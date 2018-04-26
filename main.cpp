@@ -79,13 +79,12 @@ void BenchMark2(){
 void GenerateValues(std::function<int(std::vector<int>*,int)> function){
     std::string sizes = "";
     std::string times = "";
-
     for (int repetitions = 0; repetitions <= 50; repetitions++){
-        srand(repetitions);
-        int arraySize = rand ()%10000 + 100;
+        srand(repetitions*1000);
+        int arraySize = rand()%10000 + 100;
         std::vector<int>* array = generateArray(arraySize);
         sizes.append(std::to_string(arraySize) + "\n");
-        times.append(std::to_string(TimeStamp(array,arraySize/rand(),function)) + "\n");
+        times.append(std::to_string(TimeStamp(array,arraySize/(rand()%10000+100),function)) + "\n");
     }
     std::cout <<sizes<<std::endl;
     std::cout <<times<<std::endl;
