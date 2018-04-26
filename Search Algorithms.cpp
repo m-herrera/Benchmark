@@ -40,7 +40,11 @@ int  InterpolationSearch(std::vector<int>* array,int target){
     int lowElement = (*array)[low];
     int highElement = (*array)[high];
     while((low <= high && target >= lowElement && target <= highElement)){
-        middle =  low + ((target-lowElement)*(high-low)/(highElement-lowElement));
+        if (highElement == lowElement){
+            middle = 0;
+        }else{
+            middle =  low + ((target-lowElement)*(high-low)/(highElement-lowElement));
+        }
         if (target > (*array)[middle]){
             low = middle+1;
             lowElement = (*array)[low];
